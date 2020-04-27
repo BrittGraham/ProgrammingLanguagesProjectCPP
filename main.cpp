@@ -131,24 +131,24 @@ void quickSort(int A[], int low, int high){
 }
 
 int main(){
-    int arr[10000] = {};
-    int SS[10000];
-    int BS[10000];
-    int MS[10000];
-    int QS[10000];
+    int arr[7800] = {};
+    int SS[7800];
+    int BS[7800];
+    int MS[7800];
+    int QS[7800];
     //Creating a random array.
-    for(int i = 0; i < 10000; i++) {
+    for(int i = 0; i < 7800; i++) {
         arr[i] = (rand()%2000 + (-1000));
     }
     //creating copies of random array for each sorting array.
-    for (int j = 0; j < 10000; ++j) {
+    for (int j = 0; j < 7800; ++j) {
         SS[j] = arr[j];
         BS[j] = arr[j];
         MS[j] = arr[j];
         QS[j] = arr[j];
     }
 
-    auto ssTime = SelectionSort(SS, 10000);
+    auto ssTime = SelectionSort(SS, 7800);
     cout << "Part of new array after Selection Sort: ";
     //Printing array out
     for(int a = 0; a < 100; a++){
@@ -158,7 +158,7 @@ int main(){
     cout << "SelectionSort time: " << ssTime.count() << " Milliseconds"<< endl;
     cout << "SelectionSort lines of code: 10" << endl;
     cout << "------------------------------------------------------------------" << endl;
-    auto bsTime = BubbleSort(BS, 10000);
+    auto bsTime = BubbleSort(BS, 7800);
     cout << "Part of new array after Bubble Sort: ";
     for(int b = 0; b < 100; b++){
         cout << BS[b] << " ";
@@ -180,9 +180,9 @@ int main(){
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 35" << endl;
     cout << "------------------------------------------------------------------" << endl;
-
+    int qsSize = sizeof(QS)/sizeof(QS[0]);
     auto qsStart = high_resolution_clock::now();
-    quickSort(QS,0,9999);
+    quickSort(QS,0,qsSize - 1);
     auto qsEnd = high_resolution_clock::now();
     auto qsDuration = duration_cast<milliseconds>(qsEnd - qsStart);
     cout << "Part of new array after Quick Sort: ";
