@@ -89,6 +89,35 @@ void mergeSort(int A[], int low, int high){
     }
 }
 
+int partition(int A[], int low, int high){
+    int pivot = A[high];
+    int i = low - 1;
+    for (int j = low; j <= high; ++j) {
+        if (A[j] <= pivot){
+            i++;
+            int temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+        }
+
+    }
+    int temp = A[i+1];
+    A[i+1] = A[high];
+    A[high] = temp;
+    return i + 1;
+}
+
+void quickSort(int A[], int low, int high){
+    if (low > high){
+        return;
+    }
+    else{
+        int i = partition(A,low,high);
+        quickSort(A, low, i-1);
+        quickSort(A, i+1, high);
+    }
+}
+
 int main(){
     int arr[1000] = {};
     int SS[1000];
@@ -126,7 +155,7 @@ int main(){
     cout << "BubbleSort lines of code: 6" << endl;
     cout << "------------------------------------------------------------------" << endl;
     auto start = high_resolution_clock::now();
-    mergeSort(MS,0, 999);
+    //mergeSort(MS,0, 999);
     auto end = high_resolution_clock::now();
     auto msDuration = duration_cast<milliseconds>(end - start);
     cout << "New array after Merge Sort: ";
@@ -136,6 +165,18 @@ int main(){
     cout << endl;
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 33" << endl;
+    cout << "------------------------------------------------------------------" << endl;
+    auto qsStart = high_resolution_clock::now();
+    quickSort(QS,0,999);
+    auto qsEnd = high_resolution_clock::now();
+    auto qsDuration = duration_cast<milliseconds>(qsEnd - qsStart);
+    cout << "New array after Quick Sort: ";
+    for(int d = 0; d < 1000; d++){
+        cout << QS[d] << " ";
+    }
+    cout << endl;
+    cout << "QuickSort time: " << qsDuration.count() << " Milliseconds"<< endl;
+    cout << "QuickSort lines of code: " << endl;
 
 
     return 0;
