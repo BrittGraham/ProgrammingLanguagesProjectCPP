@@ -41,18 +41,22 @@ auto BubbleSort(int A[], int n){
 }
 
 void merge(int A[], int low, int mid, int high){
-    int b[(mid-low) + 1];
-    int c[(high - mid)];
-    for (int i = 0; i < sizeof(b); ++i) {
+    int i, j, k;
+    int bSize = mid - low + 1;
+    int cSize = high - mid;
+
+    int b[bSize];
+    int c[cSize];
+    for (int i = 0; i < bSize; ++i) {
         b[i] = A[low + i];
     }
-    for (int j = 0; j < sizeof(c); ++j) {
+    for (int j = 0; j < cSize; ++j) {
         c[j] = A[mid + 1 + j];
     }
-    int k = low;
-    int i = 0;
-    int j = 0;
-    while (i < sizeof(b) && j < sizeof(c)){
+    k = low;
+    i = 0;
+    j = 0;
+    while (i < bSize && j < cSize){
         if(b[i] < c[j]){
             A[k] = b[i];
             i++;
@@ -64,15 +68,15 @@ void merge(int A[], int low, int mid, int high){
             k++;
         }
     }
-    if( i == sizeof(b)) {
-        while(j < sizeof(c)) {
+    if( i == bSize) {
+        while(j < cSize) {
             A[k] = c[j];
             j++;
             k++;
         }
     }
     else{
-        while(i < sizeof(b)) {
+        while(i < bSize) {
             A[k] = b[i];
             i++;
             k++;
@@ -82,7 +86,7 @@ void merge(int A[], int low, int mid, int high){
 
 void mergeSort(int A[], int low, int high){
     if(low < high){
-        int middle = (low+high)/2;
+        int middle = low+(high-1)/2;
         mergeSort(A, low, middle);
         mergeSort(A, middle+1,high);
         merge(A, low, middle, high);
@@ -126,7 +130,7 @@ int main(){
     cout << "BubbleSort lines of code: 6" << endl;
     cout << "------------------------------------------------------------------" << endl;
     auto start = high_resolution_clock::now();
-    mergeSort(MS,0, (sizeof(MS) - 1));
+    mergeSort(MS,0, (1000 - 1));
     auto end = high_resolution_clock::now();
     auto msDuration = duration_cast<milliseconds>(end - start);
     cout << "New array after Merge Sort: ";
@@ -136,5 +140,7 @@ int main(){
     cout << endl;
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 33" << endl;
+    
+
     return 0;
 }
