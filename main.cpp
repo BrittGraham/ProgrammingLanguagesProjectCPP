@@ -57,30 +57,26 @@ void merge(int A[], int low, int mid, int high){
     i = 0;
     j = 0;
     while (i < bSize && j < cSize){
-        if(b[i] < c[j]){
+        if(b[i] <= c[j]){
             A[k] = b[i];
             i++;
-            k++;
         }
         else{
             A[k] = c[j];
             j++;
-            k++;
         }
+        k++;
     }
-    if( i == bSize) {
-        while(j < cSize) {
-            A[k] = c[j];
-            j++;
-            k++;
-        }
+    while(j < cSize) {
+        A[k] = c[j];
+        j++;
+        k++;
     }
-    else{
-        while(i < bSize) {
-            A[k] = b[i];
-            i++;
-            k++;
-        }
+
+    while(i < bSize) {
+        A[k] = b[i];
+        i++;
+        k++;
     }
 }
 
@@ -130,7 +126,7 @@ int main(){
     cout << "BubbleSort lines of code: 6" << endl;
     cout << "------------------------------------------------------------------" << endl;
     auto start = high_resolution_clock::now();
-    mergeSort(MS,0, (1000 - 1));
+    mergeSort(MS,0, 999);
     auto end = high_resolution_clock::now();
     auto msDuration = duration_cast<milliseconds>(end - start);
     cout << "New array after Merge Sort: ";
@@ -140,7 +136,7 @@ int main(){
     cout << endl;
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 33" << endl;
-    
+
 
     return 0;
 }
