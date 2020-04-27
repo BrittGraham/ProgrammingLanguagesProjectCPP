@@ -7,6 +7,8 @@ auto SelectionSort(int A[], int n);
 auto BubbleSort(int A[], int n);
 void merge(int A[], int low, int mid, int high);
 void mergeSort(int A[], int low, int high);
+int partition(int A[], int low, int high);
+void quickSort(int A[], int low, int high);
 
 auto SelectionSort(int A[], int n){
     auto start = high_resolution_clock::now();
@@ -76,7 +78,6 @@ void merge(int A[], int low, int mid, int high){
         }
         k++;
     }
-
     //Copy remaining elements if they exist.
     while(i < bSize) {
         A[k] = b[i];
@@ -106,7 +107,7 @@ void mergeSort(int A[], int low, int high){
 int partition(int A[], int low, int high){
     int pivot = A[high];
     int i = low - 1;
-    for (int j = low; j <= high; ++j) {
+    for (int j = low; j <= high - 1; ++j) {
         if (A[j] <= pivot){
             i++;
             int temp = A[i];
@@ -122,10 +123,7 @@ int partition(int A[], int low, int high){
 }
 
 void quickSort(int A[], int low, int high){
-    if (low > high){
-        return;
-    }
-    else{
+    if (low < high){
         int i = partition(A,low,high);
         quickSort(A, low, i-1);
         quickSort(A, i+1, high);
@@ -169,17 +167,17 @@ int main(){
     cout << "BubbleSort lines of code: 6" << endl;
     cout << "------------------------------------------------------------------" << endl;
     int msSize = sizeof(MS)/sizeof(MS[0]);
-    auto start = high_resolution_clock::now();
+    auto msStart = high_resolution_clock::now();
     mergeSort(MS,0, msSize - 1);
-    auto end = high_resolution_clock::now();
-    auto msDuration = duration_cast<milliseconds>(end - start);
+    auto msEnd = high_resolution_clock::now();
+    auto msDuration = duration_cast<microseconds>(msEnd - msStart);
     cout << "New array after Merge Sort: ";
     for(int c = 0; c < 1000; c++){
         cout << MS[c] << " ";
     }
     cout << endl;
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
-    cout << "MergeSort lines of code: 33" << endl;
+    cout << "MergeSort lines of code: 35" << endl;
     cout << "------------------------------------------------------------------" << endl;
 
     auto qsStart = high_resolution_clock::now();
@@ -192,7 +190,7 @@ int main(){
     }
     cout << endl;
     cout << "QuickSort time: " << qsDuration.count() << " Milliseconds"<< endl;
-    cout << "QuickSort lines of code: " << endl;
+    cout << "QuickSort lines of code: 16" << endl;
 
 
     return 0;
