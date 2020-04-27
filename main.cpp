@@ -1,7 +1,12 @@
 #include <iostream>
 #include <chrono>
+#include <cmath>
 using namespace std;
 using namespace std::chrono;
+auto SelectionSort(int A[], int n);
+auto BubbleSort(int A[], int n);
+void merge(int A[], int low, int mid, int high);
+void mergeSort(int A[], int low, int high);
 
 auto SelectionSort(int A[], int n){
     auto start = high_resolution_clock::now();
@@ -41,12 +46,15 @@ auto BubbleSort(int A[], int n){
 }
 
 void merge(int A[], int low, int mid, int high){
-    int i, j, k;
+    int i;
+    int j;
+    int k;
     int bSize = mid - low + 1;
     int cSize = high - mid;
 
     int b[bSize];
     int c[cSize];
+    //copy data into arrays
     for (int i = 0; i < bSize; ++i) {
         b[i] = A[low + i];
     }
@@ -56,6 +64,7 @@ void merge(int A[], int low, int mid, int high){
     k = low;
     i = 0;
     j = 0;
+    //merge the temp arrays into A
     while (i < bSize && j < cSize){
         if(b[i] <= c[j]){
             A[k] = b[i];
@@ -67,22 +76,27 @@ void merge(int A[], int low, int mid, int high){
         }
         k++;
     }
+
+    //Copy remaining elements if they exist.
+    while(i < bSize) {
+        A[k] = b[i];
+        i++;
+        k++;
+    }
+
     while(j < cSize) {
         A[k] = c[j];
         j++;
         k++;
     }
 
-    while(i < bSize) {
-        A[k] = b[i];
-        i++;
-        k++;
-    }
 }
 
 void mergeSort(int A[], int low, int high){
     if(low < high){
-        int middle = low+(high-1)/2;
+        //int middle = low+floor((high-1)/2);
+        int middle = floor((low+high)/2);
+        //sorting both halves
         mergeSort(A, low, middle);
         mergeSort(A, middle+1,high);
         merge(A, low, middle, high);
@@ -154,8 +168,9 @@ int main(){
     cout << "BubbleSort time: " << bsTime.count() << " Milliseconds"<< endl;
     cout << "BubbleSort lines of code: 6" << endl;
     cout << "------------------------------------------------------------------" << endl;
+    int msSize = sizeof(MS)/sizeof(MS[0]);
     auto start = high_resolution_clock::now();
-    //mergeSort(MS,0, 999);
+    mergeSort(MS,0, msSize - 1);
     auto end = high_resolution_clock::now();
     auto msDuration = duration_cast<milliseconds>(end - start);
     cout << "New array after Merge Sort: ";
@@ -166,6 +181,7 @@ int main(){
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 33" << endl;
     cout << "------------------------------------------------------------------" << endl;
+
     auto qsStart = high_resolution_clock::now();
     quickSort(QS,0,999);
     auto qsEnd = high_resolution_clock::now();
