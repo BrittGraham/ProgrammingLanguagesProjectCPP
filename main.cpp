@@ -131,35 +131,36 @@ void quickSort(int A[], int low, int high){
 }
 
 int main(){
-    int arr[1000] = {};
-    int SS[1000];
-    int BS[1000];
-    int MS[1000];
-    int QS[1000];
+    int arr[10000] = {};
+    int SS[10000];
+    int BS[10000];
+    int MS[10000];
+    int QS[10000];
     //Creating a random array.
-    for(int i = 0; i < 1000; i++) {
+    for(int i = 0; i < 10000; i++) {
         arr[i] = (rand()%2000 + (-1000));
     }
     //creating copies of random array for each sorting array.
-    for (int j = 0; j < 1000; ++j) {
+    for (int j = 0; j < 10000; ++j) {
         SS[j] = arr[j];
         BS[j] = arr[j];
         MS[j] = arr[j];
         QS[j] = arr[j];
     }
 
-    auto ssTime = SelectionSort(SS, 1000);
-    cout << "New array after Selection Sort: ";
-    for(int a = 0; a < 1000; a++){
+    auto ssTime = SelectionSort(SS, 10000);
+    cout << "Part of new array after Selection Sort: ";
+    //Printing array out
+    for(int a = 0; a < 100; a++){
         cout << SS[a] << " ";
     }
     cout << endl;
     cout << "SelectionSort time: " << ssTime.count() << " Milliseconds"<< endl;
     cout << "SelectionSort lines of code: 10" << endl;
     cout << "------------------------------------------------------------------" << endl;
-    auto bsTime = BubbleSort(BS, 1000);
-    cout << "New array after Bubble Sort: ";
-    for(int b = 0; b < 1000; b++){
+    auto bsTime = BubbleSort(BS, 10000);
+    cout << "Part of new array after Bubble Sort: ";
+    for(int b = 0; b < 100; b++){
         cout << BS[b] << " ";
     }
     cout << endl;
@@ -170,9 +171,9 @@ int main(){
     auto msStart = high_resolution_clock::now();
     mergeSort(MS,0, msSize - 1);
     auto msEnd = high_resolution_clock::now();
-    auto msDuration = duration_cast<microseconds>(msEnd - msStart);
-    cout << "New array after Merge Sort: ";
-    for(int c = 0; c < 1000; c++){
+    auto msDuration = duration_cast<milliseconds>(msEnd - msStart);
+    cout << "Part of new array after Merge Sort: ";
+    for(int c = 0; c < 100; c++){
         cout << MS[c] << " ";
     }
     cout << endl;
@@ -181,11 +182,11 @@ int main(){
     cout << "------------------------------------------------------------------" << endl;
 
     auto qsStart = high_resolution_clock::now();
-    quickSort(QS,0,999);
+    quickSort(QS,0,9999);
     auto qsEnd = high_resolution_clock::now();
     auto qsDuration = duration_cast<milliseconds>(qsEnd - qsStart);
-    cout << "New array after Quick Sort: ";
-    for(int d = 0; d < 1000; d++){
+    cout << "Part of new array after Quick Sort: ";
+    for(int d = 0; d < 100; d++){
         cout << QS[d] << " ";
     }
     cout << endl;
