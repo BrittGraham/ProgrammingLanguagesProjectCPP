@@ -151,18 +151,18 @@ int main(){
     auto ssTime = SelectionSort(SS, 7800);
     cout << "Part of new array after Selection Sort: ";
     //Printing array out
-    for(int a = 0; a < 100; a++){
-        cout << SS[a] << " ";
-    }
+//    for(int a = 0; a < 100; a++){
+//        cout << SS[a] << " ";
+//    }
     cout << endl;
     cout << "SelectionSort time: " << ssTime.count() << " Milliseconds"<< endl;
     cout << "SelectionSort lines of code: 10" << endl;
     cout << "------------------------------------------------------------------" << endl;
     auto bsTime = BubbleSort(BS, 7800);
     cout << "Part of new array after Bubble Sort: ";
-    for(int b = 0; b < 100; b++){
-        cout << BS[b] << " ";
-    }
+//    for(int b = 0; b < 100; b++){
+//        cout << BS[b] << " ";
+//    }
     cout << endl;
     cout << "BubbleSort time: " << bsTime.count() << " Milliseconds"<< endl;
     cout << "BubbleSort lines of code: 6" << endl;
@@ -173,9 +173,9 @@ int main(){
     auto msEnd = high_resolution_clock::now();
     auto msDuration = duration_cast<milliseconds>(msEnd - msStart);
     cout << "Part of new array after Merge Sort: ";
-    for(int c = 0; c < 100; c++){
-        cout << MS[c] << " ";
-    }
+//    for(int c = 0; c < 100; c++){
+//        cout << MS[c] << " ";
+//    }
     cout << endl;
     cout << "MergeSort time: " << msDuration.count() << " Milliseconds"<< endl;
     cout << "MergeSort lines of code: 35" << endl;
@@ -186,9 +186,9 @@ int main(){
     auto qsEnd = high_resolution_clock::now();
     auto qsDuration = duration_cast<milliseconds>(qsEnd - qsStart);
     cout << "Part of new array after Quick Sort: ";
-    for(int d = 0; d < 100; d++){
-        cout << QS[d] << " ";
-    }
+//    for(int d = 0; d < 100; d++){
+//        cout << QS[d] << " ";
+//    }
     cout << endl;
     cout << "QuickSort time: " << qsDuration.count() << " Milliseconds"<< endl;
     cout << "QuickSort lines of code: 16" << endl;
